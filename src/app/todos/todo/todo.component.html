@@ -1,0 +1,16 @@
+<li
+  class="animated"
+  [class.done]="todo.done"
+  [class.highlight]="todo.highlight"
+  [class.flipInY]="todo.justAdded"
+  [style.color]="'#'+todo.color"
+  (mouseenter)="todo.highlight = true"
+  (mouseleave)="todo.highlight = false">
+  <span
+    [routerLink]="['/edit-todo', index-1]"
+    >
+    {{index}}: {{todo.name | capitalize}}
+  </span>
+  <span>{{todo.assignee}}</span>
+  <input type="checkbox" [checked]="todo.done" (change)="itemCheckboxChanged($event.target.checked)" />
+</li>

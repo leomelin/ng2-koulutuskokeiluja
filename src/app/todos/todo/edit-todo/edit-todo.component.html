@@ -1,0 +1,33 @@
+<div>
+  edit-todo works! Editing: {{index}}<br />
+  <form novalidate #f="ngForm" (submit)="f.valid && saveTodo($event)">
+    <label for="todo-name">Name:</label>
+    <input name="todo-name"
+      required
+      id="todo-name"
+      type="text"
+      [(ngModel)]="modifiedTodo.name"
+      #nameControl="ngModel"
+    />
+    <div *ngIf="!nameControl.valid">Name is required!</div>
+    <label for="todo-assignee">Assignee:</label>
+    <input name="todo-assignee"
+      id="todo-assignee"
+      type="text"
+      [(ngModel)]="modifiedTodo.assignee"
+      novalidate
+      maxlength="10"
+      minlength="6"
+      #assigneeControl="ngModel"
+    />
+    {{debug(assigneeControl.errors)}}
+    <div *ngIf="assigneeControl.touched && assigneeControl.errors && assigneeControl.errors.minlength">
+      Min length is 6 chars!
+    </div>
+    <div *ngIf="assigneeControl.touched && assigneeControl.errors && assigneeControl.errors.maxlength">
+      Max length is 10 chars!</div>
+    <button type="submit" [disabled]="!f.valid">Save</button>
+  </form>
+</div>
+
+<button (click)="goBack($event)">Back</button>

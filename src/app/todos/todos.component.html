@@ -1,0 +1,9 @@
+<div>
+  Todo count: {{todoCount()}}
+  <ul>
+    <app-todo *ngFor="let todo of items; let i = index" [todo]="todo" [index]="i+1"></app-todo>
+  </ul>
+
+  <input type="text" #nameInput />
+  <button (click)="addItem($event, nameInput)">Add item</button>
+</div>
